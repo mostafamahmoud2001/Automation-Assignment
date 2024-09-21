@@ -45,6 +45,6 @@ public class TodayDeals_Feature {
     @AfterMethod
     public void closing(){
 
-        //driver.quit();
+        driver.quit();
     }
 }

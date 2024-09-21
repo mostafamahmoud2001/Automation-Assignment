@@ -14,18 +14,17 @@ public class ShoppingCart {
     String addedItem;
     @FindBy(className = "sc-list-item-content")
     List<WebElement> items;
+    By itemText = By.className("sc-grid-item-product-title");
     public ShoppingCart (WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
     public boolean checkTheItem(String itemName){
         for(WebElement item:items) {
-            String itemTextInShoppingCart = item.findElement(By.className("sc-grid-item-product-title")).getText();
+            String itemTextInShoppingCart = item.findElement(itemText).getText();
             itemTextInShoppingCart = itemTextInShoppingCart.substring(0, itemTextInShoppingCart.length() - 3);
             if(itemName.contains(itemTextInShoppingCart))
             {
-                System.out.println(itemName);
-                System.out.println(itemTextInShoppingCart);
                 return true;
             }
         }

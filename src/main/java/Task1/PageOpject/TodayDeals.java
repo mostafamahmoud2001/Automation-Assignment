@@ -15,12 +15,13 @@ public class TodayDeals {
     String addedItem;
     @FindBy(xpath = "//a[@aria-labelledby=\"see-more-departments-label\"]")
     WebElement seeMoreDepartments;
+    By itemsLoc = By.className("ProductCard-module__card_uyr_Jh7WpSkPx4iEpn4w");
     public String getCardXpath(int row){
         String xpath = "//div[@data-testid=\"virtuoso-item-list\"]/div[@data-index=\""+row+"\"]/div/div/div/div";
         System.out.println(xpath);
         return xpath;
     }
-    By itemsLoc =   By.className("ProductCard-module__card_uyr_Jh7WpSkPx4iEpn4w");
+
     public TodayDeals (WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
@@ -49,7 +50,7 @@ public class TodayDeals {
             }
             pixel+=300;
         }
-        //driver.findElements(By.xpath(xpath)).get(0).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
 }

@@ -20,7 +20,9 @@ public class HomePage {
     WebElement searchButton;
     @FindBy(xpath = "//a[@href=\"/gp/goldbox?ref_=nav_cs_gb\"]")
     WebElement todayDeals;
-
+    By dismissBtn = By.xpath("//input[@data-action-type=\"DISMISS\"]");
+    By todayDealsLoc= By.linkText("Today's Deals");
+    By searchBar= By.id("twotabsearchtextbox");
     public HomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
@@ -30,13 +32,13 @@ public class HomePage {
     }
     public void search(String item){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("twotabsearchtextbox"))).sendKeys(item);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchBar)).sendKeys(item);
         searchButton.click();
     }
     public void goTOTodayDeals(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        driver.findElement(By.xpath("//input[@data-action-type=\"DISMISS\"]")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Today's Deals"))).click();
+        driver.findElement(dismissBtn).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(todayDealsLoc)).click();
     }
 
 }
